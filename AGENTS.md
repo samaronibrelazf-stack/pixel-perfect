@@ -8,3 +8,9 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Course/certificate demo content lives in `src/data/cursos.ts` as typed mock data — keeps the public site working before a backend exists; replace with Lovable Cloud queries when the database lands.
+- Shared chrome (header/footer) renders in `src/routes/__root.tsx`; pages only render their own content.
+- UI copy is Brazilian Portuguese.
