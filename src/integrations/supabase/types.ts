@@ -14,16 +14,203 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      aulas: {
+        Row: {
+          created_at: string
+          descricao: string
+          id: string
+          modulo_id: string
+          ordem: number
+          titulo: string
+        }
+        Insert: {
+          created_at?: string
+          descricao?: string
+          id?: string
+          modulo_id: string
+          ordem?: number
+          titulo: string
+        }
+        Update: {
+          created_at?: string
+          descricao?: string
+          id?: string
+          modulo_id?: string
+          ordem?: number
+          titulo?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "aulas_modulo_id_fkey"
+            columns: ["modulo_id"]
+            isOneToOne: false
+            referencedRelation: "modulos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cursos: {
+        Row: {
+          carga_horaria: number
+          categoria: string
+          created_at: string
+          descricao: string
+          destaque: boolean
+          id: string
+          imagem_url: string | null
+          instrutor: string
+          materiais: string[]
+          nota: number
+          nota_minima: number
+          objetivo: string
+          preco: number
+          publico: string
+          resumo: string
+          slug: string
+          status: Database["public"]["Enums"]["curso_status"]
+          titulo: string
+          updated_at: string
+        }
+        Insert: {
+          carga_horaria?: number
+          categoria?: string
+          created_at?: string
+          descricao?: string
+          destaque?: boolean
+          id?: string
+          imagem_url?: string | null
+          instrutor?: string
+          materiais?: string[]
+          nota?: number
+          nota_minima?: number
+          objetivo?: string
+          preco?: number
+          publico?: string
+          resumo?: string
+          slug: string
+          status?: Database["public"]["Enums"]["curso_status"]
+          titulo: string
+          updated_at?: string
+        }
+        Update: {
+          carga_horaria?: number
+          categoria?: string
+          created_at?: string
+          descricao?: string
+          destaque?: boolean
+          id?: string
+          imagem_url?: string | null
+          instrutor?: string
+          materiais?: string[]
+          nota?: number
+          nota_minima?: number
+          objetivo?: string
+          preco?: number
+          publico?: string
+          resumo?: string
+          slug?: string
+          status?: Database["public"]["Enums"]["curso_status"]
+          titulo?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      modulos: {
+        Row: {
+          created_at: string
+          curso_id: string
+          id: string
+          ordem: number
+          titulo: string
+        }
+        Insert: {
+          created_at?: string
+          curso_id: string
+          id?: string
+          ordem?: number
+          titulo: string
+        }
+        Update: {
+          created_at?: string
+          curso_id?: string
+          id?: string
+          ordem?: number
+          titulo?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "modulos_curso_id_fkey"
+            columns: ["curso_id"]
+            isOneToOne: false
+            referencedRelation: "cursos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          cpf: string | null
+          created_at: string
+          email: string
+          id: string
+          nome: string
+          telefone: string | null
+          updated_at: string
+        }
+        Insert: {
+          cpf?: string | null
+          created_at?: string
+          email?: string
+          id: string
+          nome?: string
+          telefone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          cpf?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          nome?: string
+          telefone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "aluno"
+      curso_status: "rascunho" | "publicado" | "arquivado"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +337,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "aluno"],
+      curso_status: ["rascunho", "publicado", "arquivado"],
+    },
   },
 } as const
