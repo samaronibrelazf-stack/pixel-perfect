@@ -54,6 +54,7 @@ function Perfil() {
     setSalvando(false);
     if (error) toast.error("Não foi possível salvar.");
     else toast.success("Dados atualizados.");
+    return undefined;
   };
 
   return (

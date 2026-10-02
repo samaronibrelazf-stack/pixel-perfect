@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/integrations/supabase/client";
 
 const links = [
   { to: "/", label: "Início" },
@@ -10,6 +12,7 @@ const links = [
 
 export function SiteHeader() {
   const [aberto, setAberto] = useState(false);
+  const { user, isAdmin } = useAuth();
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
@@ -36,12 +39,15 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Link to="/cursos" className="btn-base btn-outline">
-            Entrar
-          </Link>
-          <Link to="/cursos" className="btn-base btn-primary">
-            Criar conta
-          </Link>
+          {user ? (
+            <>
+              {isAdmin && <Link to="/admin" className="btn-base btn-outline">Painel</Link>}
+              <Link to="/perfil" className="btn-base btn-outline">Meu perfil</Link>
+              <button className="btn-base btn-primary" onClick={async () => { await supabase.auth.signOut(); window.location.replace("/auth"); }}>Sair</button>
+            </>
+          ) : (
+            <Link to="/auth" className="btn-base btn-primary">Entrar / Criar conta</Link>
+          )}
         </div>
 
         <button
@@ -69,8 +75,8 @@ export function SiteHeader() {
                 {l.label}
               </Link>
             ))}
-            <Link to="/cursos" onClick={() => setAberto(false)} className="btn-base btn-primary my-3">
-              Criar conta
+            <Link to={user ? "/perfil" : "/auth"} onClick={() => setAberto(false)} className="btn-base btn-primary my-3">
+              {user ? "Meu perfil" : "Entrar / Criar conta"}
             </Link>
           </div>
         </nav>
