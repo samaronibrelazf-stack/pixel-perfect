@@ -1,16 +1,23 @@
-# ALTiora — roadmap
+# ALTiora — roadmap (MVP em etapas)
 
 ## Pronto
 - Design system institucional (azul-marinho + dourado, Fraunces/IBM Plex Sans)
-- Área pública: início, catálogo com busca/filtros/ordenação, página do curso, sobre
-- Validação pública de certificado por código (dados de exemplo)
+- Área pública: início, catálogo, página do curso, sobre, validação de certificado (exemplo)
 
-## Próximos passos
-- [ ] Cadastro, login, recuperação de senha (Lovable Cloud)
-- [ ] Banco de dados: cursos, módulos, aulas, materiais, matrículas
-- [ ] Área do aluno: progresso, meus cursos, avaliações, certificados, pagamentos
-- [ ] Sistema de avaliações com correção automática e nota mínima
-- [ ] Emissão automática de certificados com QR Code real
-- [ ] Painéis de instrutor, gestor e administrador
-- [ ] Vídeos via Cloudflare Stream ou Mux
-- [ ] Pagamentos
+## Etapa 1 — Base
+- [ ] Ativar Lovable Cloud
+- [ ] Cadastro (nome, e-mail, CPF, telefone, senha), login, logout, recuperação de senha, perfil
+- [ ] Perfis Aluno/Administrador (tabela de papéis) e bloqueio do painel para alunos
+- [ ] Banco: cursos (rascunho/publicado/arquivado), módulos e aulas ordenados
+- [ ] Painel do administrador: criar/editar/publicar cursos, módulos e aulas
+- [ ] Catálogo público lendo do banco (só publicados)
+
+## Etapa 2 — Conteúdo e certificação
+- [ ] Envio de vídeos e apostilas (arquivos privados, só para matriculados)
+- [ ] Matrícula gratuita, "Meus cursos", progresso
+- [ ] Avaliações com correção automática, nota mínima, tentativas
+- [ ] Conclusão, certificado em PDF com QR Code, validação pública real
+
+## Etapa 3 — Pagamentos
+- [ ] Cartão, Pix e boleto; liberação automática após aprovação
+- [ ] Painel admin: indicadores, alunos, matrículas, notas, certificados, pagamentos
