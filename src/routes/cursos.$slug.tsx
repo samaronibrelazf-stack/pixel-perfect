@@ -1,9 +1,11 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { formatarPreco, getCurso, totalAulas } from "@/data/cursos";
+import { formatarPreco, totalAulas } from "@/data/cursos";
+import { cursoQuery } from "@/lib/cursos.functions";
+import { InscreverBotao } from "@/components/InscreverBotao";
 
 export const Route = createFileRoute("/cursos/$slug")({
-  loader: ({ params }) => {
-    const curso = getCurso(params.slug);
+  loader: async ({ params, context }) => {
+    const curso = await context.queryClient.ensureQueryData(cursoQuery(params.slug));
     if (!curso) throw notFound();
     return { curso };
   },
@@ -135,9 +137,7 @@ function PaginaCurso() {
             {gratuito ? "Gratuito" : "Pago"}
           </span>
           <p className="mt-3 font-display text-3xl font-semibold">{formatarPreco(curso.preco)}</p>
-          <button type="button" className="btn-base btn-primary mt-5 w-full">
-            {gratuito ? "Inscrever-se" : "Comprar curso"}
-          </button>
+          <InscreverBotao gratuito={gratuito} />
           <dl className="mt-5 space-y-2 border-t border-border pt-5 text-sm">
             <div className="flex justify-between">
               <dt className="text-muted-foreground">Carga horária</dt>

@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-altiora.jpg";
 import { CursoCard } from "@/components/CursoCard";
-import { cursos } from "@/data/cursos";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { cursosQuery } from "@/lib/cursos.functions";
 import { ValidadorCertificado } from "@/components/ValidadorCertificado";
 
 export const Route = createFileRoute("/")({
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(cursosQuery),
   component: Index,
 });
 
@@ -30,6 +32,7 @@ const beneficios = [
 ];
 
 function Index() {
+  const { data: cursos } = useSuspenseQuery(cursosQuery);
   const destaques = cursos.filter((c) => c.destaque);
   const gratuitos = cursos.filter((c) => c.preco === 0);
   const pagos = cursos.filter((c) => c.preco > 0);

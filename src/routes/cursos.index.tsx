@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { CursoCard } from "@/components/CursoCard";
-import { cursos } from "@/data/cursos";
+import { cursosQuery } from "@/lib/cursos.functions";
 
 export const Route = createFileRoute("/cursos/")({
   head: () => ({
@@ -19,14 +20,16 @@ export const Route = createFileRoute("/cursos/")({
       },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(cursosQuery),
   component: Catalogo,
 });
 
-const categorias = ["Todas", ...Array.from(new Set(cursos.map((c) => c.categoria)))];
 const precos = ["Todos", "Gratuitos", "Pagos"] as const;
 const ordens = ["Relevância", "Melhor avaliados", "Maior carga horária", "Menor preço"] as const;
 
 function Catalogo() {
+  const { data: cursos } = useSuspenseQuery(cursosQuery);
+  const categorias = ["Todas", ...Array.from(new Set(cursos.map((c) => c.categoria)))];
   const [busca, setBusca] = useState("");
   const [categoria, setCategoria] = useState("Todas");
   const [preco, setPreco] = useState<(typeof precos)[number]>("Todos");
@@ -54,7 +57,7 @@ function Catalogo() {
     if (ordem === "Menor preço") r.sort((a, b) => a.preco - b.preco);
     if (ordem === "Relevância") r.sort((a, b) => Number(b.destaque) - Number(a.destaque));
     return r;
-  }, [busca, categoria, preco, ordem]);
+  }, [cursos, busca, categoria, preco, ordem]);
 
   return (
     <div className="container-page py-12">
