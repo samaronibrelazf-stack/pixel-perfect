@@ -29,6 +29,7 @@ function RedefinirSenha() {
     if (error) return toast.error("Link expirado ou inválido. Solicite um novo.");
     toast.success("Senha atualizada!");
     navigate({ to: "/perfil" });
+    return undefined;
   };
 
   const campo =

@@ -40,6 +40,7 @@ function AdminCursos() {
     if (error) return toast.error("Não foi possível criar o curso.");
     qc.invalidateQueries({ queryKey: ["admin-cursos"] });
     navigate({ to: "/admin/cursos/$id", params: { id: data.id } });
+    return undefined;
   };
 
   return (
