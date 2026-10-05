@@ -45,19 +45,53 @@ function EditarCurso() {
   const recarregar = () => qc.invalidateQueries({ queryKey: ["admin-modulos", id] });
 
   const salvar = async () => {
+    const problemas: string[] = [];
+    if (!f.titulo?.trim()) problemas.push("Informe o título do curso.");
+    if (!f.slug?.trim()) problemas.push("Informe o endereço (slug) do curso.");
+    else if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(f.slug.trim()))
+      problemas.push("O endereço (slug) só pode ter letras minúsculas, números e hífens, sem espaços.");
+    if (!f.resumo?.trim()) problemas.push("Informe um resumo do curso.");
+    if (!f.categoria?.trim()) problemas.push("Informe a categoria.");
+    if (!f.instrutor?.trim()) problemas.push("Informe o instrutor responsável.");
+    const carga = Number(f.carga_horaria);
+    if (!Number.isFinite(carga) || carga <= 0) problemas.push("A carga horária precisa ser maior que zero.");
+    const preco = Number(f.preco);
+    if (!Number.isFinite(preco) || preco < 0) problemas.push("O preço não pode ser negativo (use 0 para curso gratuito).");
+    const notaMin = Number(f.nota_minima);
+    if (!Number.isFinite(notaMin) || notaMin < 0 || notaMin > 100)
+      problemas.push("A nota mínima precisa estar entre 0 e 100.");
+    if (f.imagem_url && !/^https?:\/\/.+/.test(f.imagem_url.trim()))
+      problemas.push("O endereço da imagem de capa precisa começar com http:// ou https://.");
+    if (problemas.length > 0) {
+      toast.error("Revise o formulário antes de salvar:", {
+        description: problemas.map((p) => `• ${p}`).join("\n"),
+        duration: 8000,
+      });
+      return;
+    }
+
     const { error } = await supabase
       .from("cursos")
       .update({
-        titulo: f.titulo, slug: f.slug, resumo: f.resumo, descricao: f.descricao, objetivo: f.objetivo,
-        publico: f.publico, categoria: f.categoria, instrutor: f.instrutor,
-        carga_horaria: Number(f.carga_horaria) || 0, preco: Number(f.preco) || 0,
-        imagem_url: f.imagem_url || null, materiais: f.materiais, nota_minima: Number(f.nota_minima) || 70,
+        titulo: f.titulo!.trim(), slug: f.slug!.trim(), resumo: f.resumo!.trim(),
+        descricao: f.descricao, objetivo: f.objetivo,
+        publico: f.publico, categoria: f.categoria!.trim(), instrutor: f.instrutor!.trim(),
+        carga_horaria: carga, preco,
+        imagem_url: f.imagem_url?.trim() || null, materiais: f.materiais, nota_minima: notaMin,
         destaque: f.destaque, status: f.status,
       })
       .eq("id", id);
-    if (error) toast.error("Não foi possível salvar (verifique se o endereço do curso é único).");
-    else {
-      toast.success("Curso salvo.");
+    if (error) {
+      if (error.code === "23505")
+        toast.error("Não foi possível salvar: já existe outro curso com este endereço (slug). Escolha um endereço diferente.");
+      else if (error.code === "42501" || error.message?.includes("row-level security"))
+        toast.error("Não foi possível salvar: sua conta não tem permissão de administrador.");
+      else
+        toast.error("Não foi possível salvar o curso. Verifique sua conexão e tente novamente.", {
+          description: error.message,
+        });
+    } else {
+      toast.success("Curso salvo com sucesso.");
       qc.invalidateQueries();
     }
   };
