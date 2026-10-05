@@ -74,11 +74,11 @@ function EditarCurso() {
       .from("cursos")
       .update({
         titulo: f.titulo!.trim(), slug: f.slug!.trim(), resumo: f.resumo!.trim(),
-        descricao: f.descricao, objetivo: f.objetivo,
-        publico: f.publico, categoria: f.categoria!.trim(), instrutor: f.instrutor!.trim(),
+        descricao: f.descricao ?? "", objetivo: f.objetivo ?? "",
+        publico: f.publico ?? "", categoria: f.categoria!.trim(), instrutor: f.instrutor!.trim(),
         carga_horaria: carga, preco,
-        imagem_url: f.imagem_url?.trim() || null, materiais: f.materiais, nota_minima: notaMin,
-        destaque: f.destaque, status: f.status,
+        imagem_url: f.imagem_url?.trim() || null, materiais: f.materiais ?? [], nota_minima: notaMin,
+        destaque: f.destaque ?? false, status: f.status ?? "rascunho",
       })
       .eq("id", id);
     if (error) {
