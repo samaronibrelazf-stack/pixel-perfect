@@ -41,7 +41,7 @@ function Index() {
 
   return (
     <>
-      <section className="border-b border-border bg-primary text-primary-foreground">
+      <section className="border-b border-border bg-primary-gradient text-primary-foreground">
         <div className="container-page grid gap-10 py-14 md:grid-cols-2 md:items-center md:py-20">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
@@ -137,7 +137,7 @@ function Index() {
       </section>
 
       <section className="container-page pb-16">
-        <div className="rounded-xl border border-border bg-primary p-8 text-primary-foreground sm:p-10">
+        <div className="rounded-xl border border-border bg-primary-gradient p-8 text-primary-foreground sm:p-10">
           <h2 className="text-2xl">Comece hoje, sem custo</h2>
           <p className="mt-2 max-w-xl text-primary-foreground/75">
             Crie sua conta gratuita e matricule-se nos cursos liberados para iniciar sua trilha.
