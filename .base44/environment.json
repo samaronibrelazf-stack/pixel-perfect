@@ -1,0 +1,12 @@
+{
+  "previewPort": 3000,
+  "healthPath": "/",
+  "startCommand": "docker compose -f docker-compose.base44.yml up -d",
+  "secrets": [
+    {
+      "name": "SUPABASE_SERVICE_ROLE_KEY",
+      "description": "Supabase service role key (bypasses RLS) for admin server functions. Optional — the public site works without it. Find it in your Supabase/Lovable Cloud project dashboard under Settings > API.",
+      "requiredAtBoot": false
+    }
+  ]
+}

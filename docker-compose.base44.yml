@@ -1,0 +1,26 @@
+services:
+  web:
+    image: oven/bun:1
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "3000:5000"
+    env_file:
+      - ./.env.base44-defaults
+      - /run/base44/app.env
+    environment:
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
+    command:
+      - sh
+      - -ec
+      - |
+        bun install
+        exec bun run dev
+    healthcheck:
+      test: ["CMD-SHELL", "bun -e 'fetch(\"http://127.0.0.1:5000\").then(r=>process.exit(r.status<500?0:1)).catch(()=>process.exit(1))'"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 90s
+    restart: on-failure
