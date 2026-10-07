@@ -1,6 +1,7 @@
 # ALTiora — roadmap (MVP em etapas)
 
 ## Pronto
+- [ ] Atualizar imagens pertinentes com os anexos, verificar computador/celular e informar fotos ausentes
 - Design system institucional (azul-marinho + dourado, Fraunces/IBM Plex Sans)
 - Área pública: início, catálogo, página do curso, sobre, validação de certificado (exemplo)
 
