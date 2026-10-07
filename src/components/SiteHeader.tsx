@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
+import logo from "@/assets/altiora-logo.svg.asset.json";
 
 const links = [
   { to: "/", label: "Início" },
@@ -18,10 +19,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2.5" onClick={() => setAberto(false)}>
-          <span className="grid size-9 place-items-center rounded-lg bg-primary font-display text-lg font-semibold text-primary-foreground">
-            A
-          </span>
-          <span className="font-display text-xl font-semibold tracking-tight">ALTiora</span>
+          <img src={logo.url} alt="ALTiora — Desenvolvimento Profissional" width={652} height={217} className="h-14 w-40 object-contain" />
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">

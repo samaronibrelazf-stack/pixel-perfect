@@ -1,6 +1,7 @@
-import financas from "@/assets/curso-financas.jpg";
-import dados from "@/assets/curso-dados.jpg";
-import projetos from "@/assets/curso-projetos.jpg";
+import financas from "@/assets/curso-financas.webp.asset.json";
+import dados from "@/assets/curso-dados.webp.asset.json";
+import projetos from "@/assets/curso-projetos.webp.asset.json";
+import comunicacao from "@/assets/curso-comunicacao.svg.asset.json";
 
 export type Curso = {
   id: string;
@@ -24,9 +25,18 @@ export type Curso = {
 
 /** Capa padrão quando o curso ainda não tem imagem própria. */
 export const imagemPadrao = (slug: string, categoria: string) => {
-  if (slug === "gestao-financeira") return financas;
-  if (categoria === "Tecnologia") return dados;
-  return projetos;
+  if (slug === "gestao-financeira") return financas.url;
+  if (slug === "comunicacao-corporativa") return comunicacao.url;
+  if (categoria === "Tecnologia") return dados.url;
+  return projetos.url;
+};
+
+export const descricaoImagemCurso = (curso: Curso) => {
+  if (curso.imagem === financas.url) return "Imagem ilustrativa: calculadora, caderno e gráficos para planejamento financeiro.";
+  if (curso.imagem === dados.url) return "Imagem ilustrativa: análise de gráficos e dados em um computador.";
+  if (curso.imagem === projetos.url) return "Imagem ilustrativa: quadro de tarefas e cronograma de um projeto.";
+  if (curso.imagem === comunicacao.url) return "Capa de Comunicação Corporativa com o logotipo oficial da Altiora sobre fundo azul.";
+  return `Capa do curso ${curso.titulo}`;
 };
 
 export const formatarPreco = (preco: number) =>

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroImg from "@/assets/hero-altiora.jpg";
+import heroImg from "@/assets/hero-altiora.webp.asset.json";
 import { CursoCard } from "@/components/CursoCard";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { cursosQuery } from "@/lib/cursos.functions";
@@ -62,11 +62,13 @@ function Index() {
             </div>
           </div>
           <img
-            src={heroImg}
-            alt="Estudantes em um espaço de aprendizagem moderno"
+            src={heroImg.url}
+            alt="Imagem ilustrativa: três pessoas compartilham uma atividade de aprendizagem com computadores; não é um registro da Altiora."
+            fetchPriority="high"
+            decoding="async"
             width={1440}
             height={960}
-            className="w-full rounded-xl object-cover shadow-card"
+            className="aspect-[3/2] w-full rounded-xl object-contain shadow-card"
           />
         </div>
       </section>

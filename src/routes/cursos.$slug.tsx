@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { formatarPreco, totalAulas } from "@/data/cursos";
+import { descricaoImagemCurso, formatarPreco, totalAulas } from "@/data/cursos";
 import { cursoQuery } from "@/lib/cursos.functions";
 import { InscreverBotao } from "@/components/InscreverBotao";
 
@@ -62,11 +62,11 @@ function PaginaCurso() {
           </div>
           <img
             src={curso.imagem}
-            alt={curso.titulo}
+            alt={descricaoImagemCurso(curso)}
             loading="lazy"
             width={1024}
             height={640}
-            className="w-full rounded-xl object-cover shadow-card"
+            className="aspect-video w-full rounded-xl object-contain shadow-card"
           />
         </div>
       </header>
