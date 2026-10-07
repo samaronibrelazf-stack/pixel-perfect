@@ -1,7 +1,7 @@
-import financas from "@/assets/altiora-administracao.webp.asset.json";
-import dados from "@/assets/curso-dados.webp.asset.json";
-import projetos from "@/assets/curso-projetos.webp.asset.json";
-import comunicacao from "@/assets/altiora-atendimento.webp.asset.json";
+import financas from "@/assets/altiora-administracao.webp";
+import dados from "@/assets/curso-dados.webp";
+import projetos from "@/assets/curso-projetos.webp";
+import comunicacao from "@/assets/altiora-atendimento.webp";
 
 export type Curso = {
   id: string;
@@ -25,17 +25,40 @@ export type Curso = {
 
 /** Capa padrão quando o curso ainda não tem imagem própria. */
 export const imagemPadrao = (slug: string, categoria: string) => {
-  if (slug === "gestao-financeira") return financas.url;
-  if (slug === "comunicacao-corporativa") return comunicacao.url;
-  if (categoria === "Tecnologia") return dados.url;
-  return projetos.url;
+  if (slug === "gestao-financeira") return financas;
+  if (slug === "comunicacao-corporativa") return comunicacao;
+  if (categoria === "Tecnologia") return dados;
+  return projetos;
+};
+
+const imagensLocaisPorNome: Record<string, string> = {
+  "altiora-administracao.webp": financas,
+  "altiora-atendimento.webp": comunicacao,
+  "curso-comunicacao.svg": comunicacao,
+  "curso-dados.webp": dados,
+  "curso-financas.webp": financas,
+  "curso-projetos.webp": projetos,
+};
+
+export const normalizarImagemCurso = (
+  imagemUrl: string | null,
+  slug: string,
+  categoria: string,
+) => {
+  if (!imagemUrl) return imagemPadrao(slug, categoria);
+  if (!imagemUrl.includes("/__l5e/assets-v1/") && !/\.lovable(?:project)?\.com|\.lovable\.app/.test(imagemUrl)) {
+    return imagemUrl;
+  }
+
+  const nomeArquivo = imagemUrl.split(/[?#]/, 1)[0]?.split("/").pop() ?? "";
+  return imagensLocaisPorNome[nomeArquivo] ?? imagemPadrao(slug, categoria);
 };
 
 export const descricaoImagemCurso = (curso: Curso) => {
-  if (curso.imagem === financas.url) return "Imagem ilustrativa: profissionais analisam documentos e gráficos financeiros em uma rotina administrativa.";
-  if (curso.imagem === dados.url) return "Imagem ilustrativa: análise de gráficos e dados em um computador.";
-  if (curso.imagem === projetos.url) return "Imagem ilustrativa: quadro de tarefas e cronograma de um projeto.";
-  if (curso.imagem === comunicacao.url) return "Imagem ilustrativa: profissionais praticam comunicação e atendimento com computador e headset.";
+  if (curso.imagem === financas) return "Imagem ilustrativa: profissionais analisam documentos e gráficos financeiros em uma rotina administrativa.";
+  if (curso.imagem === dados) return "Imagem ilustrativa: análise de gráficos e dados em um computador.";
+  if (curso.imagem === projetos) return "Imagem ilustrativa: quadro de tarefas e cronograma de um projeto.";
+  if (curso.imagem === comunicacao) return "Imagem ilustrativa: profissionais praticam comunicação e atendimento com computador e headset.";
   return `Capa do curso ${curso.titulo}`;
 };
 

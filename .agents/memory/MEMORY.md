@@ -1,0 +1,1 @@
+- [Local media policy](local-media-policy.md) — keep app images in the repo, not at Lovable runtime URLs.

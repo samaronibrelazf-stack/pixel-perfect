@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroImg from "@/assets/altiora-capacitacao.webp.asset.json";
+import heroImg from "@/assets/altiora-capacitacao.webp";
 import { CursoCard } from "@/components/CursoCard";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { cursosQuery } from "@/lib/cursos.functions";
@@ -64,7 +64,7 @@ function Index() {
             </div>
           </div>
           <img
-            src={heroImg.url}
+            src={heroImg}
             alt="Imagem ilustrativa: instrutora orienta um grupo em uma capacitação profissional com computadores e cadernos."
             fetchPriority="high"
             decoding="async"

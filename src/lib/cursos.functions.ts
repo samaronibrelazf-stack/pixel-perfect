@@ -3,7 +3,7 @@ import { queryOptions } from "@tanstack/react-query";
 import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
-import { imagemPadrao, type Curso } from "@/data/cursos";
+import { normalizarImagemCurso, type Curso } from "@/data/cursos";
 
 const SELECT =
   "id, slug, titulo, resumo, descricao, objetivo, publico, categoria, instrutor, carga_horaria, preco, imagem_url, materiais, nota_minima, nota, destaque, modulos(titulo, ordem, aulas(titulo, ordem))";
@@ -58,7 +58,7 @@ function paraCurso(r: Linha): Curso {
     preco: Number(r.preco),
     nota: Number(r.nota),
     destaque: r.destaque,
-    imagem: r.imagem_url || imagemPadrao(r.slug, r.categoria),
+    imagem: normalizarImagemCurso(r.imagem_url, r.slug, r.categoria),
     materiais: r.materiais ?? [],
     notaMinima: r.nota_minima,
     modulos: [...(r.modulos ?? [])]
