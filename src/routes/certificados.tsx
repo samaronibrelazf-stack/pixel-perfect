@@ -27,7 +27,7 @@ function Certificados() {
     <div className="container-page py-14">
       <h1 className="text-3xl">Validação de certificados</h1>
       <p className="mt-3 max-w-2xl text-muted-foreground">
-        Todo certificado emitido pela ALTiora recebe um código único e um QR Code. Informe o código
+        Todo certificado emitido pela Altiora recebe um código único e um QR Code. Informe o código
         abaixo para conferir o nome do aluno, o curso, a carga horária e a data de emissão.
       </p>
 
