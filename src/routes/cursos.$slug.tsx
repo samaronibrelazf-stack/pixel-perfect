@@ -12,7 +12,9 @@ export const Route = createFileRoute("/cursos/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Curso não encontrado — ALTiora" }, { name: "robots", content: "noindex" }],
+        meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },{ title: "Curso não encontrado — ALTiora" }, { name: "robots", content: "noindex" }],
       };
     }
     const { curso } = loaderData;

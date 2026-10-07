@@ -8,6 +8,8 @@ import { ValidadorCertificado } from "@/components/ValidadorCertificado";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "ALTiora — Cursos online com certificado validável" },
       {
         name: "description",

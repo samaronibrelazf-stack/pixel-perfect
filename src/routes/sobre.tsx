@@ -4,6 +4,8 @@ import logo from "@/assets/altiora-logo.svg.asset.json";
 export const Route = createFileRoute("/sobre")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Sobre a ALTiora" },
       {
         name: "description",

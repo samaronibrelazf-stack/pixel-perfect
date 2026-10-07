@@ -8,6 +8,8 @@ export const Route = createFileRoute("/_authenticated/admin")({
   },
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Painel administrativo — ALTiora" },
       { name: "description", content: "Gestão de cursos, módulos e aulas da ALTiora." },
       { property: "og:title", content: "Painel administrativo — ALTiora" },

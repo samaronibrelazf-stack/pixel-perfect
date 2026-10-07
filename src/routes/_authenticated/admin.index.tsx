@@ -5,6 +5,15 @@ import { supabase } from "@/integrations/supabase/client";
 import { formatarPreco, gerarSlug } from "@/data/cursos";
 
 export const Route = createFileRoute("/_authenticated/admin/")({
+  head: () => ({ meta: [
+    { title: "Cursos no painel — ALTiora" },
+    { name: "description", content: "Administre os cursos cadastrados na ALTiora." },
+    { property: "og:title", content: "Cursos no painel — ALTiora" },
+    { property: "og:description", content: "Administre os cursos cadastrados na ALTiora." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "robots", content: "noindex" },
+  ] }),
   component: AdminCursos,
 });
 
