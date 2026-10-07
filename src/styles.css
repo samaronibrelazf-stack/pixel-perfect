@@ -53,10 +53,11 @@
   --card-foreground: oklch(0.24 0.045 254);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.24 0.045 254);
-  --primary: oklch(0.33 0.072 254);
+  --primary: #2466BD;
   --primary-foreground: oklch(0.98 0.005 95);
+  --primary-gradient: linear-gradient(135deg, #1763D3 0%, #208AE0 50%, #53BDEC 100%);
   --secondary: oklch(0.94 0.012 250);
-  --secondary-foreground: oklch(0.33 0.072 254);
+  --secondary-foreground: #2466BD;
   --muted: oklch(0.945 0.009 95);
   --muted-foreground: oklch(0.52 0.025 254);
   --accent: oklch(0.645 0.112 72);
@@ -150,4 +151,8 @@
   background-color: var(--card);
   color: var(--foreground);
   border: 1px solid var(--border);
+}
+
+@utility bg-primary-gradient {
+  background: var(--primary-gradient);
 }

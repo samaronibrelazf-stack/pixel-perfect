@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-20 border-t border-border bg-primary text-primary-foreground">
+    <footer className="mt-20 border-t border-border bg-primary-gradient text-primary-foreground">
       <div className="container-page flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-display text-xl font-semibold">Altiora</p>

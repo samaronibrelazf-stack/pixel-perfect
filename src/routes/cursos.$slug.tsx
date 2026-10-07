@@ -49,7 +49,7 @@ function PaginaCurso() {
 
   return (
     <article>
-      <header className="border-b border-border bg-primary text-primary-foreground">
+      <header className="border-b border-border bg-primary-gradient text-primary-foreground">
         <div className="container-page grid gap-8 py-12 md:grid-cols-[1.2fr_1fr] md:items-center">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
