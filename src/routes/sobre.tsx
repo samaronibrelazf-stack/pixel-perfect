@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import logo from "@/assets/altiora-logo.svg.asset.json";
 
 export const Route = createFileRoute("/sobre")({
   head: () => ({
@@ -45,6 +46,7 @@ const pilares = [
 function Sobre() {
   return (
     <div className="container-page py-14">
+      <img src={logo.url} alt="ALTiora — Desenvolvimento Profissional" width={652} height={217} className="mb-6 h-auto w-72 max-w-full object-contain" />
       <h1 className="text-3xl">Sobre a ALTiora</h1>
       <p className="mt-4 max-w-2xl text-muted-foreground">
         A ALTiora é uma plataforma de educação digital criada para reunir, em um único ambiente, a
