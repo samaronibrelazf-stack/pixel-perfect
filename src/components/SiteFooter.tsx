@@ -5,7 +5,7 @@ export function SiteFooter() {
     <footer className="mt-20 border-t border-border bg-primary text-primary-foreground">
       <div className="container-page flex flex-col gap-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-display text-xl font-semibold">ALTiora</p>
+          <p className="font-display text-xl font-semibold">Altiora</p>
           <p className="mt-1 text-sm text-primary-foreground/70">
             Educação profissional e certificação.
           </p>
