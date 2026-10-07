@@ -8,6 +8,8 @@ import { apenasDigitos, cpfValido, formatarCpf, formatarTelefone } from "@/lib/v
 export const Route = createFileRoute("/_authenticated/perfil")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Meu perfil — ALTiora" },
       { name: "description", content: "Seus dados de cadastro na ALTiora." },
       { property: "og:title", content: "Meu perfil — ALTiora" },

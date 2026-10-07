@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroImg from "@/assets/hero-altiora.jpg";
+import heroImg from "@/assets/altiora-capacitacao.webp.asset.json";
 import { CursoCard } from "@/components/CursoCard";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { cursosQuery } from "@/lib/cursos.functions";
@@ -8,6 +8,8 @@ import { ValidadorCertificado } from "@/components/ValidadorCertificado";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "ALTiora — Cursos online com certificado validável" },
       {
         name: "description",
@@ -62,11 +64,13 @@ function Index() {
             </div>
           </div>
           <img
-            src={heroImg}
-            alt="Estudantes em um espaço de aprendizagem moderno"
-            width={1440}
-            height={960}
-            className="w-full rounded-xl object-cover shadow-card"
+            src={heroImg.url}
+            alt="Imagem ilustrativa: instrutora orienta um grupo em uma capacitação profissional com computadores e cadernos."
+            fetchPriority="high"
+            decoding="async"
+            width={1672}
+            height={941}
+            className="aspect-video w-full rounded-xl object-contain shadow-card"
           />
         </div>
       </section>

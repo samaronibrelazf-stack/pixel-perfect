@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { formatarPreco, totalAulas, type Curso } from "@/data/cursos";
+import { descricaoImagemCurso, formatarPreco, totalAulas, type Curso } from "@/data/cursos";
 
 export function CursoCard({ curso }: { curso: Curso }) {
   const gratuito = curso.preco === 0;
@@ -9,11 +9,11 @@ export function CursoCard({ curso }: { curso: Curso }) {
       <div className="relative">
         <img
           src={curso.imagem}
-          alt={curso.titulo}
+          alt={descricaoImagemCurso(curso)}
           loading="lazy"
           width={1024}
           height={640}
-          className="aspect-[16/10] w-full object-cover"
+          className="aspect-video w-full object-contain"
         />
         <span
           className={`absolute left-3 top-3 rounded-full px-2.5 py-1 text-[11px] font-semibold ${

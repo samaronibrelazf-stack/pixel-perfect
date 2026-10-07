@@ -8,6 +8,15 @@ import type { Database } from "@/integrations/supabase/types";
 type CursoRow = Database["public"]["Tables"]["cursos"]["Row"];
 
 export const Route = createFileRoute("/_authenticated/admin/cursos/$id")({
+  head: () => ({ meta: [
+    { title: "Editar curso — ALTiora" },
+    { name: "description", content: "Edite os dados, módulos e aulas de um curso ALTiora." },
+    { property: "og:title", content: "Editar curso — ALTiora" },
+    { property: "og:description", content: "Edite os dados, módulos e aulas de um curso ALTiora." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "robots", content: "noindex" },
+  ] }),
   component: EditarCurso,
 });
 

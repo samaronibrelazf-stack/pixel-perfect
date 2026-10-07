@@ -9,6 +9,8 @@ import { apenasDigitos, cadastroSchema, formatarCpf, formatarTelefone } from "@/
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Entrar ou criar conta — ALTiora" },
       { name: "description", content: "Acesse sua conta ALTiora ou cadastre-se para estudar." },
       { property: "og:title", content: "Entrar ou criar conta — ALTiora" },

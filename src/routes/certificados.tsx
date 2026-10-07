@@ -4,6 +4,8 @@ import { ValidadorCertificado } from "@/components/ValidadorCertificado";
 export const Route = createFileRoute("/certificados")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Validação de certificados — ALTiora" },
       {
         name: "description",

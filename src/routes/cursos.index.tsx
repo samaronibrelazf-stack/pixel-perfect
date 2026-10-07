@@ -7,6 +7,8 @@ import { cursosQuery } from "@/lib/cursos.functions";
 export const Route = createFileRoute("/cursos/")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Catálogo de cursos — ALTiora" },
       {
         name: "description",
