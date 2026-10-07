@@ -2,6 +2,7 @@
 
 ## Pronto
 - [ ] Atualizar imagens pertinentes com os anexos, verificar computador/celular e informar fotos ausentes
+- [ ] Incorporar novas ilustrações de capacitação, administração e atendimento nas seções pertinentes
 - Design system institucional (azul-marinho + dourado, Fraunces/IBM Plex Sans)
 - Área pública: início, catálogo, página do curso, sobre, validação de certificado (exemplo)
 
