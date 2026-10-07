@@ -49,9 +49,9 @@ function Sobre() {
   return (
     <div className="container-page py-14">
       <img src={logo.url} alt="ALTiora — Desenvolvimento Profissional" width={652} height={217} className="mb-6 h-auto w-72 max-w-full object-contain" />
-      <h1 className="text-3xl">Sobre a ALTiora</h1>
+      <h1 className="text-3xl">Sobre a Altiora</h1>
       <p className="mt-4 max-w-2xl text-muted-foreground">
-        A ALTiora é uma plataforma de educação digital criada para reunir, em um único ambiente, a
+        A Altiora é uma plataforma de educação digital criada para reunir, em um único ambiente, a
         criação, a distribuição e a comercialização de cursos online. O objetivo é simples: permitir
         que instituições e especialistas entreguem formação séria, com acompanhamento de progresso e
         certificação que pode ser comprovada por qualquer pessoa.
