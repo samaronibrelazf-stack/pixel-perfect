@@ -17,7 +17,7 @@ export function SiteFooter() {
         </nav>
       </div>
       <div className="container-page border-t border-primary-foreground/15 py-5 text-xs text-primary-foreground/60">
-        © {new Date().getFullYear()} ALTiora. Todos os direitos reservados.
+        © {new Date().getFullYear()} Altiora. Todos os direitos reservados.
       </div>
     </footer>
   );
